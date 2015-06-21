@@ -20,7 +20,7 @@ module Nakal
           height = @image.rows
           x_start = crop_params["left"]
           y_start = crop_params["top"]
-          width_to_consider = width-crop_params["right"]
+          width_to_consider = width-crop_params["right"]-x_start
           height_to_consider = height-crop_params["bottom"]-y_start
           @image.crop(x_start, y_start, width_to_consider, height_to_consider)
         end
