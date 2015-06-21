@@ -11,13 +11,12 @@ Nakal.create_image_dir
 module Nakal::Android
   class Screen
     def capture
-      `mv spec/resources/home_screen.png #{Nakal.image_location}`
+      `cp spec/resources/home_screen.png #{Nakal.image_location}`
     end
   end
 end
 
 describe Nakal::Android::Screen do
-
 
   before(:all) do
     @screen = Nakal::Android::Screen.new("home_screen", :capture)
@@ -26,6 +25,12 @@ describe Nakal::Android::Screen do
   describe "#new" do
     it "creates new screen by capturing it" do
       expect(@screen).to be_an_instance_of Nakal::Android::Screen
+    end
+
+    it "creates new screen object using an image file" do
+      new_screen = Nakal::Android::Screen.new("home_screen", :load)
+      expect(new_screen.name).to eq "home_screen"
+      expect(new_screen.image).to be_an_instance_of Magick::Image
     end
   end
 
@@ -61,6 +66,6 @@ describe Nakal::Android::Screen do
 
   after(:all) do
     `mv #{Nakal.image_location}/home_screen.png  spec/resources/`
-    `rm -rf spec/resources/droid`
+    `rm -rf #{Nakal.image_location}/*.png`
   end
 end
