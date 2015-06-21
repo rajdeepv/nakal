@@ -11,7 +11,7 @@ Nakal.create_image_dir
 module Nakal::Android
   class Screen
     def capture
-      `cp spec/resources/home_screen.png #{Nakal.image_location}`
+      `cp spec/resources/*.png #{Nakal.image_location}`
     end
   end
 end
@@ -64,8 +64,19 @@ describe Nakal::Android::Screen do
     end
   end
 
+  describe "#compare" do
+    it "compares two screens" do
+      Nakal.default_crop_params = {"samsung_galaxy_s3" => {"top" => 50, "right" => 0, "left" => 0, "bottom" => 0}}
+      changed_screen = Nakal::Android::Screen.new("changed_home_screen", :load)
+      diff_screen, diff_metric = @screen.compare(changed_screen)
+      expect(diff_metric.round(6)).to eq 0.062555
+      expect(diff_screen).to be_an_instance_of Nakal::Android::Screen
+      expect(diff_screen.name).to eql "home_screen_diff"
+      diff_screen.save
+    end
+  end
+
   after(:all) do
-    `mv #{Nakal.image_location}/home_screen.png  spec/resources/`
     `rm -rf #{Nakal.image_location}/*.png`
   end
 end
