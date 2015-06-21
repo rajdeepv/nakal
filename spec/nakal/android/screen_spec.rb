@@ -1,5 +1,4 @@
 require 'spec_helper'
-
 require 'nakal'
 
 `rm -rf spec/resources/droid`
@@ -32,10 +31,15 @@ describe Nakal::Android::Screen do
       expect(new_screen.name).to eq "home_screen"
       expect(new_screen.image).to be_an_instance_of Magick::Image
     end
+
+    it "throws error if new screen is created using invalid file" do
+      expect { Nakal::Android::Screen.new("invalid_image", :load) }.to raise_error(Magick::ImageMagickError)
+    end
   end
 
   describe "#strip" do
     it "does not crop image when no params are given" do
+      Nakal.default_crop_params = {}
       expect(@screen.strip.rows).to eq 1280
       expect(@screen.strip.columns).to eq 720
     end
