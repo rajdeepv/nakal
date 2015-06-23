@@ -18,7 +18,24 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+If you are using cucumber, include following Lines in your env.rb
+
+require "nakal/cucumber"
+
+Nakal.platform = :android
+Nakal.directory= "baseline_images/droid"
+Nakal.device_name = "samsung_galaxy_s3"
+
+and then put this line in your code where you want comparison to begin:
+
+nakal_execute("current_screen_name")
+
+
+While executing, pass env variable NAKAL_MODE=build to build the baseline images
+
+once baseline is built, next execution onwards, start using environment variable NAKAL_MODE=compare to compare against baseline
+
+This is currently beta and implemented for android only. iOs is work in progress
 
 ## Contributing
 

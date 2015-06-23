@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["mail.rajvarma@gmail.com"]
   spec.summary       = "Visual regression testing of android and ios apps"
   spec.description   = spec.summary
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/rajdeepv/nakal"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
