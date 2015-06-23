@@ -23,7 +23,9 @@ If you are using cucumber, include following Lines in your env.rb
 require "nakal/cucumber"
 
 Nakal.platform = :android
+
 Nakal.directory= "baseline_images/droid"
+
 Nakal.device_name = "samsung_galaxy_s3"
 
 and then put this line in your code where you want comparison to begin:
