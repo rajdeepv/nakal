@@ -30,14 +30,32 @@ Nakal.device_name = "samsung_galaxy_s3"
 
 and then put this line in your code where you want comparison to begin:
 
-nakal_execute("current_screen_name")
+diff = nakal_execute("current_screen_name")
 
 
-While executing, pass env variable NAKAL_MODE=build to build the baseline images
+While executing first time, pass env variable NAKAL_MODE=build to build the baseline images
 
 once baseline is built, next execution onwards, start using environment variable NAKAL_MODE=compare to compare against baseline
 
-This is currently beta and implemented for android only. iOs is work in progress
+
+For cropping the notification bar OR scroll bar, create a config/nakal.yml file in execution directory
+
+eg:
+
+put these contents in your nakal.yml file inside config/nakal.yml
+
+samsung_galaxy_s3:
+ top: 50
+ right: 18
+ left: 0
+ bottom: 0
+
+nexus7:
+ top: 74
+ right: 20
+ left: 0
+ bottom: 0
+
 
 ## Contributing
 
