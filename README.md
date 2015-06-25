@@ -45,16 +45,24 @@ eg:
 put these contents in your nakal.yml file inside config/nakal.yml
 
 samsung_galaxy_s3:
- top: 50
- right: 18
- left: 0
- bottom: 0
+ 
+    top: 50
+ 
+    right: 18
+ 
+    left: 0
+ 
+    bottom: 0
 
 nexus7:
- top: 74
- right: 20
- left: 0
- bottom: 0
+ 
+    top: 74
+ 
+    right: 20
+ 
+    left: 0
+ 
+    bottom: 0
 
 
 ## Contributing
