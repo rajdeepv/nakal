@@ -10,7 +10,6 @@ module Nakal
       if diff_metric==0
         current_screen.delete!
       else
-        p "difference = #{diff_metric}"
         diff_screen.save
         Nakal.diff_screens << image_file_name
         embed_screenshots image_file_name if Nakal.embed_screenshot == true

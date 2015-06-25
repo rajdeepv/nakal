@@ -6,14 +6,9 @@ module Nakal
 
       def initialize file_name, mode = :load, image = nil
         @name = file_name
-        if mode.eql?(:capture)
-          capture
-          load_image_from_file
-        elsif mode.eql?(:load)
-          load_image_from_file
-        else
-          @image=image
-        end
+        @image = image
+        capture if mode.eql?(:capture)
+        image.nil? ? @image = Magick::Image.read("#{Nakal.image_location}/#{@name}.png")[0] : @image=image
       end
 
       def strip
@@ -43,12 +38,6 @@ module Nakal
 
       def save
         @image.write("#{Nakal.image_location}/#{@name}.png")
-      end
-
-      private
-
-      def load_image_from_file
-        @image = Magick::Image.read("#{Nakal.image_location}/#{@name}.png")[0]
       end
 
     end
