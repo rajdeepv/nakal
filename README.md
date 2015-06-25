@@ -54,7 +54,7 @@ samsung_galaxy_s3:
  
     bottom: 0
 
-nexus7:
+iphone_5s:
  
     top: 74
  
