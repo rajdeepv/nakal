@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Nakal : ">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Nakal</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/rajdeepv/nakal">View on GitHub</a>
+
+          <h1 id="project_title">Nakal</h1>
+          <h2 id="project_tagline"></h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/rajdeepv/nakal/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/rajdeepv/nakal/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a id="nakal" class="anchor" href="#nakal" aria-hidden="true"><span class="octicon octicon-link"></span></a>Nakal</h1>
+
+<p>Automated visual testing of Android/iOS applications</p>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>Add this line to your application's Gemfile:</p>
+
+<pre><code>gem 'nakal'
+</code></pre>
+
+<p>And then execute:</p>
+
+<pre><code>$ bundle
+</code></pre>
+
+<p>Or install it yourself as:</p>
+
+<pre><code>$ gem install nakal
+</code></pre>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>If you are using cucumber, include following Lines in your env.rb</p>
+
+<pre><code>require "nakal/cucumber"
+Nakal.platform = :android
+Nakal.directory= "&lt;your_project_dir&gt;/baseline_images/droid"
+Nakal.device_name = "samsung_galaxy_s3"
+</code></pre>
+
+<p>and then put this line in your automation code, at all places where a new screen loads:</p>
+
+<pre><code>diff = nakal_execute("current_screen_name")
+</code></pre>
+
+<p>Now, execute your test by passing env variable NAKAL_MODE=build to build the baseline images</p>
+
+<p>once baseline is built, next execution onwards, start using environment variable NAKAL_MODE=compare to compare against baseline.
+any difference will be put in the same directory with image file named "current_screen_name_diff.png"</p>
+
+<p>For cropping the notification bar OR scroll bar, create a config/nakal.yml file in execution directory</p>
+
+<p>eg:</p>
+
+<p>put these contents in your nakal.yml file inside config/nakal.yml</p>
+
+<pre><code>samsung_galaxy_s3:
+ top: 50
+ right: 18
+ left: 0
+ bottom: 0
+
+nexus7:
+ top: 74
+ right: 20
+ left: 0
+ bottom: 0
+
+iPhone_5s:
+ top: 30
+ right: 6
+ left: 0
+ bottom: 0  
+</code></pre>
+
+<h2>
+<a id="contributing" class="anchor" href="#contributing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contributing</h2>
+
+<ol>
+<li>Fork it ( <a href="http://github.com/">http://github.com/</a>/nakal/fork )</li>
+<li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li>
+<li>Commit your changes (<code>git commit -am 'Add some feature'</code>)</li>
+<li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
+<li>Create new Pull Request</li>
+</ol>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Nakal maintained by <a href="https://github.com/rajdeepv">rajdeepv</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
