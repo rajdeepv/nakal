@@ -20,22 +20,19 @@ Or install it yourself as:
 
 If you are using cucumber, include following Lines in your env.rb
 
-require "nakal/cucumber"
+	require "nakal/cucumber"
+	Nakal.platform = :android
+	Nakal.directory= "<your_project_dir>/baseline_images/droid"
+	Nakal.device_name = "samsung_galaxy_s3"
 
-Nakal.platform = :android
+and then put this line in your automation code, at all places where a new screen loads:
 
-Nakal.directory= "baseline_images/droid"
+	diff = nakal_execute("current_screen_name")
 
-Nakal.device_name = "samsung_galaxy_s3"
+Now, execute your test by passing env variable NAKAL_MODE=build to build the baseline images
 
-and then put this line in your code where you want comparison to begin:
-
-diff = nakal_execute("current_screen_name")
-
-
-While executing first time, pass env variable NAKAL_MODE=build to build the baseline images
-
-once baseline is built, next execution onwards, start using environment variable NAKAL_MODE=compare to compare against baseline
+once baseline is built, next execution onwards, start using environment variable NAKAL_MODE=compare to compare against baseline.
+any difference will be put in the same directory with image file named "current_screen_name_diff.png"
 
 
 For cropping the notification bar OR scroll bar, create a config/nakal.yml file in execution directory
