@@ -1,4 +1,4 @@
-require 'nakal'
+require_relative '../nakal'
 
 module Nakal
   module DSL
@@ -29,7 +29,6 @@ module Nakal
 
     def nakal_execute image_name, params = {:delay => nil, :replace_baseline => false}
       return if ENV['NAKAL_MODE'].nil?
-      Nakal.create_image_dir
       sleep params[:delay] unless params[:delay].nil?
       capture_screen(image_name) if (ENV['NAKAL_MODE'] == "build") || (params[:replace_baseline] == true)
       current_screen_vs_base_image(image_name) if ENV['NAKAL_MODE'] == "compare" && params[:replace_baseline] != true

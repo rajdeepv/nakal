@@ -1,10 +1,12 @@
-require "nakal/version"
 require 'rmagick'
 require 'fileutils'
 require 'yaml'
+require 'pry'
+require_relative "nakal/version"
 require_relative 'nakal/base_screen'
 require_relative 'nakal/android/screen'
 require_relative 'nakal/ios/screen'
+require_relative 'nakal/dsl'
 
 module Nakal
 
