@@ -22,8 +22,11 @@ If you are using cucumber, include following Lines in your env.rb
 
 	require "nakal/cucumber"
 	Nakal.platform = :android
-	Nakal.directory= "<your_project_dir>/baseline_images/droid"
-	Nakal.device_name = "samsung_galaxy_s3"
+	
+	for ios, set:
+	
+	Nakal.platform = :ios
+
 
 and then put this line in your automation code, at all places where a new screen loads:
 
@@ -34,6 +37,11 @@ Now, execute your test by passing env variable NAKAL_MODE=build to build the bas
 once baseline is built, next execution onwards, start using environment variable NAKAL_MODE=compare to compare against baseline.
 any difference will be put in the same directory with image file named "current_screen_name_diff.png"
 
+
+For setting custom directory, use:  
+
+	Nakal.directory= "<desired_directory>"
+	Nakal.device_name = "nexus7"
 
 For cropping the notification bar OR scroll bar, create a config/nakal.yml file in execution directory
 
