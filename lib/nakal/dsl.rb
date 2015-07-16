@@ -12,6 +12,7 @@ module Nakal
       Timeout::timeout(Nakal.timeout) {
         until diff_metric < 0.05 do
           sleep 1
+          current_screen = Nakal.current_platform::Screen.new("#{image_file_name}_current", :capture)
           diff_screen, diff_metric = orignal_screen.compare(current_screen)
         end
       } rescue nil
