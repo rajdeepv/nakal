@@ -1,4 +1,5 @@
 require_relative '../nakal'
+require 'timeout'
 
 module Nakal
   module DSL
@@ -7,6 +8,14 @@ module Nakal
       orignal_screen = Nakal.current_platform::Screen.new(image_file_name, :load)
       current_screen = Nakal.current_platform::Screen.new("#{image_file_name}_current", :capture)
       diff_screen, diff_metric = orignal_screen.compare(current_screen)
+
+      Timeout::timeout(Nakal.timeout) {
+        until diff_metric < 0.05 do
+          sleep 1
+          diff_screen, diff_metric = orignal_screen.compare(current_screen)
+        end
+      } rescue nil
+
       if diff_metric==0
         current_screen.delete!
       else
