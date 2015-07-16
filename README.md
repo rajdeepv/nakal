@@ -72,6 +72,8 @@ put these contents in your nakal.yml file inside config/nakal.yml
 	 left: 0
 	 bottom: 0  
 	 
+## ToDo  
+1. Put a logic to wait for screen to load until it is matching the baseline. Timeout after certain time and fail.
 	 
 ## Contributing
 
