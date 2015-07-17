@@ -1,6 +1,8 @@
 # Nakal
 
-Automated visual testing of Android/iOS applications
+Automated visual testing of Android/iOS applications.
+
+Nakal is used to add visual validations in your existing test framework (using appium or calabash etc).
 
 ## Installation
 You need to install [imagemagick](http://www.imagemagick.org/script/index.php) on your machine
