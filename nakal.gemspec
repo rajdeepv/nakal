@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = Nakal::VERSION
   spec.authors       = ["Rajdeep"]
   spec.email         = ["mail.rajvarma@gmail.com"]
-  spec.summary       = "Visual regression testing of android and ios apps"
+  spec.summary       = "Automated visual regression testing of android and ios apps with appoum/calabash or any other tool"
   spec.description   = spec.summary
   spec.homepage      = "https://github.com/rajdeepv/nakal"
   spec.license       = "MIT"
