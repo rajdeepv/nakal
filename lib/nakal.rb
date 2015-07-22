@@ -11,19 +11,16 @@ require_relative 'nakal/dsl'
 module Nakal
 
   class<<self
-    attr_accessor :device_name, :directory, :platform, :image_location, :img_dir_created, :default_crop_params
+    attr_accessor :device_name, :directory, :platform, :image_location, :default_crop_params
     attr_accessor :diff_screens, :embed_screenshot, :timeout
 
     def configure
       yield self
     end
 
-    def create_image_dir
-      unless @img_dir_created
-        @image_location ||= "#{@directory}/#{@device_name}"
-        FileUtils.mkdir_p @image_location unless File.directory?(@image_location)
-        @img_dir_created =true
-      end
+    def create_image_dir dir
+      @image_location = "#{@directory}/#{@device_name}/#{dir}"
+      FileUtils.mkdir_p @image_location unless File.directory?(@image_location)
     end
 
     def current_platform

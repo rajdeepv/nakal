@@ -5,7 +5,6 @@ module Nakal
       attr_accessor :image, :name
 
       def initialize file_name, mode = :load, image = nil
-        Nakal.create_image_dir
         @name = file_name
         @image = image
         capture if mode.eql?(:capture)

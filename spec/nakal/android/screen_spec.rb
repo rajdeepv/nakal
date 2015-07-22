@@ -5,7 +5,7 @@ require 'nakal'
 Nakal.platform = :android
 Nakal.directory= "spec/resources/droid"
 Nakal.device_name = "samsung_galaxy_s3"
-Nakal.create_image_dir
+Nakal.create_image_dir "xx"
 
 module Nakal::Android
   class Screen
@@ -62,9 +62,9 @@ describe Nakal::Android::Screen do
       image = @screen.strip
       new_screen = Nakal::Android::Screen.new("new_home_screen", nil, image)
       new_screen.save
-      expect(File.exist?('./spec/resources/droid/samsung_galaxy_s3/new_home_screen.png')).to eq true
+      expect(File.exist?("#{Nakal.image_location}/new_home_screen.png")).to eq true
       new_screen.delete!
-      expect(File.exist?('./spec/resources/droid/samsung_galaxy_s3/new_home_screen.png')).to eq false
+      expect(File.exist?("#{Nakal.image_location}/new_home_screen.png")).to eq false
     end
   end
 

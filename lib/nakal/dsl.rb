@@ -37,11 +37,13 @@ module Nakal
       Nakal.current_platform::Screen.new(image_name, :capture)
     end
 
-    def nakal_execute image_name, params = {:delay => nil, :replace_baseline => false}
+    def nakal_execute relative_location, params = {:delay => nil, :replace_baseline => false}
       return if ENV['NAKAL_MODE'].nil?
+      Nakal.create_image_dir File.dirname(relative_location)
+      screen_name = File.basename(relative_location)
       sleep params[:delay] unless params[:delay].nil?
-      capture_screen(image_name) if (ENV['NAKAL_MODE'] == "build") || (params[:replace_baseline] == true)
-      current_screen_vs_base_image(image_name) if ENV['NAKAL_MODE'] == "compare" && params[:replace_baseline] != true
+      capture_screen(screen_name) if (ENV['NAKAL_MODE'] == "build") || (params[:replace_baseline] == true)
+      current_screen_vs_base_image(screen_name) if ENV['NAKAL_MODE'] == "compare" && params[:replace_baseline] != true
     end
   end
 
