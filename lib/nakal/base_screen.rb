@@ -27,9 +27,19 @@ module Nakal
       end
 
       def compare screen
-        diff_img, diff_metric = self.strip.compare_channel(screen.strip, Magick::RootMeanSquaredErrorMetric)
+        diff_img, diff_metric = self.apply_mask.strip.compare_channel(screen.apply_mask.strip, Magick::RootMeanSquaredErrorMetric)
         diff_screen = Nakal.current_platform::Screen.new("#{@name}_diff", :none, diff_img)
         return diff_screen, diff_metric
+      end
+
+      def apply_mask
+        image_mask_params = Nakal.default_crop_params[Nakal.device_name][@name.gsub("_current","")]
+        return self if image_mask_params.nil?
+        image_mask_params.each do |region,params|
+          gc = Magick::Draw.new.fill('black').rectangle(*params)
+          gc.draw @image
+        end
+        self
       end
 
       def delete!

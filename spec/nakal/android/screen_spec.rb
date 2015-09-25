@@ -71,11 +71,31 @@ describe Nakal::Android::Screen do
   describe "#compare" do
     it "compares two screens" do
       Nakal.default_crop_params = {"samsung_galaxy_s3" => {"top" => 50, "right" => 0, "left" => 0, "bottom" => 0}}
-      changed_screen = Nakal::Android::Screen.new("changed_home_screen", :load)
+      changed_screen = Nakal::Android::Screen.new("home_screen_current", :load)
       diff_screen, diff_metric = @screen.compare(changed_screen)
       expect(diff_metric.round(6)).to eq 0.062555
       expect(diff_screen).to be_an_instance_of Nakal::Android::Screen
       expect(diff_screen.name).to eql "home_screen_diff"
+      diff_screen.save
+    end
+
+    it "compares two screens by ignoring specified region" do
+      Nakal.default_crop_params = {"samsung_galaxy_s3" => {"top" => 50, "right" => 0, "left" => 0, "bottom" => 0,
+                                                           "home_screen" => {"cam_icon1" => [66, 852, 206, 996]}}}
+      @screen = Nakal::Android::Screen.new("home_screen", :load)
+      changed_screen = Nakal::Android::Screen.new("home_screen_current", :capture)
+      diff_screen, diff_metric = @screen.compare(changed_screen)
+      expect(diff_metric.round(5)).to eq 0.05189
+      diff_screen.save
+    end
+
+    it "compares two screens by ignoring all specified region" do
+      Nakal.default_crop_params = {"samsung_galaxy_s3" => {"top" => 50, "right" => 0, "left" => 0, "bottom" => 0,
+                                                           "home_screen" => {"cam_icon1" => [66, 852, 206, 996], "cam_icon2" => [210, 228, 340, 392],"clock" => [364, 484, 672, 770]}}}
+      @screen = Nakal::Android::Screen.new("home_screen", :load)
+      changed_screen = Nakal::Android::Screen.new("home_screen_current", :capture)
+      diff_screen, diff_metric = @screen.compare(changed_screen)
+      expect(diff_metric).to eq 0.0
       diff_screen.save
     end
   end
