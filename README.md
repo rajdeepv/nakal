@@ -78,10 +78,9 @@ put these contents in your nakal.yml file inside config/nakal.yml
      feature/sub_feature/current_screen_name: {mask_region_1: [66,424,340,478],mask_region_2: [76,524,440,578]}
 	 
 ## Note
-1. There is implicit wait of 30 sec until current screen matches baseline. This timeout can be changed by setting:
-
-
-	Nakal.Timeout = new_timeout.
+1. There is implicit wait of 30 sec until current screen matches baseline. This timeout can be changed by setting:  
+	
+		Nakal.timeout = new_timeout_value
 
 
 2. you can specify the areas of a screen you want to mask/ignore while comparing in nakal.yml as below:
