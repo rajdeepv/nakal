@@ -12,14 +12,15 @@ module Nakal
 
   class<<self
     attr_accessor :device_name, :directory, :platform, :image_location, :default_crop_params
-    attr_accessor :diff_screens, :embed_screenshot, :timeout
+    attr_accessor :diff_screens, :embed_screenshot, :timeout, :image_relative_dir
 
     def configure
       yield self
     end
 
-    def create_image_dir dir
-      @image_location = "#{@directory}/#{@device_name}/#{dir}"
+    def create_image_dir image_relative_dir
+      @image_relative_dir = image_relative_dir
+      @image_location = "#{@directory}/#{@device_name}/#{image_relative_dir}"
       FileUtils.mkdir_p @image_location unless File.directory?(@image_location)
     end
 

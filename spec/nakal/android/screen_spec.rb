@@ -5,7 +5,7 @@ require 'nakal'
 Nakal.platform = :android
 Nakal.directory= "spec/resources/droid"
 Nakal.device_name = "samsung_galaxy_s3"
-Nakal.create_image_dir "xx"
+Nakal.create_image_dir "feature"
 
 module Nakal::Android
   class Screen
@@ -81,7 +81,7 @@ describe Nakal::Android::Screen do
 
     it "compares two screens by ignoring specified region" do
       Nakal.default_crop_params = {"samsung_galaxy_s3" => {"top" => 50, "right" => 0, "left" => 0, "bottom" => 0,
-                                                           "home_screen" => {"cam_icon1" => [66, 852, 206, 996]}}}
+                                                           "feature/home_screen" => {"cam_icon1" => [66, 852, 206, 996]}}}
       @screen = Nakal::Android::Screen.new("home_screen", :load)
       changed_screen = Nakal::Android::Screen.new("home_screen_current", :capture)
       diff_screen, diff_metric = @screen.compare(changed_screen)
@@ -91,7 +91,7 @@ describe Nakal::Android::Screen do
 
     it "compares two screens by ignoring all specified region" do
       Nakal.default_crop_params = {"samsung_galaxy_s3" => {"top" => 50, "right" => 0, "left" => 0, "bottom" => 0,
-                                                           "home_screen" => {"cam_icon1" => [66, 852, 206, 996], "cam_icon2" => [210, 228, 340, 392],"clock" => [364, 484, 672, 770]}}}
+                                                           "feature/home_screen" => {"cam_icon1" => [66, 852, 206, 996], "cam_icon2" => [210, 228, 340, 392],"clock" => [364, 484, 672, 770]}}}
       @screen = Nakal::Android::Screen.new("home_screen", :load)
       changed_screen = Nakal::Android::Screen.new("home_screen_current", :capture)
       diff_screen, diff_metric = @screen.compare(changed_screen)

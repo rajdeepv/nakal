@@ -33,13 +33,17 @@ module Nakal
       end
 
       def apply_mask
-        image_mask_params = Nakal.default_crop_params[Nakal.device_name][@name.gsub("_current","")]
+        image_mask_params = Nakal.default_crop_params[Nakal.device_name][image_relative_path.gsub("_current", "")]
         return self if image_mask_params.nil?
-        image_mask_params.each do |region,params|
+        image_mask_params.each do |region, params|
           gc = Magick::Draw.new.fill('black').rectangle(*params)
           gc.draw @image
         end
         self
+      end
+
+      def image_relative_path
+        Nakal.image_relative_dir.eql?(".") ? @name : "#{Nakal.image_relative_dir}/#{@name}"
       end
 
       def delete!
