@@ -92,6 +92,11 @@ put these contents in your nakal.yml file inside config/nakal.yml
 		 bottom: 0
 		 screen_name_to_be_masked: {mask_region_1: [66,424,340,478],mask_region_2: [76,524,440,578]}
 
+3. If you want to set certain threshold while comparing. You can pass option as:
+
+		diff_metric = nakal_execute("current_screen_name",{:acceptable_diff => "#{your_acceptable_diff_metric}".to_f})
+
+
 	 
 ## Contributing
 
