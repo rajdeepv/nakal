@@ -25,7 +25,7 @@ module Nakal
     end
 
     def current_platform
-      Object.const_get("Nakal::#{Nakal.platform.capitalize}")
+      Nakal.const_get Nakal.platform.capitalize
     end
 
   end
