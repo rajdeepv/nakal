@@ -73,7 +73,7 @@ describe Nakal::Android::Screen do
       Nakal.default_crop_params = {"samsung_galaxy_s3" => {"top" => 50, "right" => 0, "left" => 0, "bottom" => 0}}
       changed_screen = Nakal::Android::Screen.new("home_screen_current", :load)
       diff_screen, diff_metric = @screen.compare(changed_screen)
-      expect(diff_metric.round(6)).to eq 0.062555
+      expect(diff_metric.round(6)).to eq 1.607964
       expect(diff_screen).to be_an_instance_of Nakal::Android::Screen
       expect(diff_screen.name).to eql "home_screen_diff"
       diff_screen.save
@@ -85,7 +85,7 @@ describe Nakal::Android::Screen do
       @screen = Nakal::Android::Screen.new("home_screen", :load)
       changed_screen = Nakal::Android::Screen.new("home_screen_current", :capture)
       diff_screen, diff_metric = @screen.compare(changed_screen)
-      expect(diff_metric.round(5)).to eq 0.05189
+      expect(diff_metric.round(5)).to eq 0.91656
       diff_screen.save
     end
 
@@ -97,6 +97,14 @@ describe Nakal::Android::Screen do
       diff_screen, diff_metric = @screen.compare(changed_screen)
       expect(diff_metric).to eq 0.0
       diff_screen.save
+    end
+
+    it "compares screen ignoring fuzz" do
+      Nakal.default_crop_params = {"samsung_galaxy_s3" => {"top" => 50, "right" => 0, "left" => 0, "bottom" => 0}}
+      @screen = Nakal::Android::Screen.new("fuzz", :load)
+      changed_screen = Nakal::Android::Screen.new("fuzz_current", :load)
+      diff_screen, diff_metric = @screen.compare(changed_screen)
+      expect(diff_metric).to eq 0.0
     end
   end
 
