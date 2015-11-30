@@ -12,7 +12,7 @@ module Nakal
 
   class<<self
     attr_accessor :device_name, :directory, :platform, :image_location, :default_crop_params
-    attr_accessor :diff_screens, :embed_screenshot, :timeout, :image_relative_dir
+    attr_accessor :diff_screens, :embed_screenshot, :timeout, :image_relative_dir, :fuzz
 
     def configure
       yield self
@@ -38,4 +38,5 @@ Nakal.configure do |config|
   config.embed_screenshot = false
   config.diff_screens = []
   config.timeout = 30
+  config.fuzz = 10
 end

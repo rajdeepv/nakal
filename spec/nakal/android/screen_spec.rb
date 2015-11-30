@@ -6,6 +6,7 @@ Nakal.platform = :android
 Nakal.directory= "spec/resources/droid"
 Nakal.device_name = "samsung_galaxy_s3"
 Nakal.create_image_dir "feature"
+Nakal.fuzz=5
 
 module Nakal::Android
   class Screen

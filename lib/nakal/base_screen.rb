@@ -27,7 +27,7 @@ module Nakal
       end
 
       def compare screen
-        @image.fuzz= 5 * Magick::QuantumRange / 100.0
+        @image.fuzz= Nakal.fuzz * Magick::QuantumRange / 100.0
         total_pixel = @image.rows * @image.columns
         diff_img, no_of_pixels_mismatch = self.apply_mask.strip.compare_channel(screen.apply_mask.strip, Magick::AbsoluteErrorMetric)
         diff_screen = Nakal.current_platform::Screen.new("#{@name}_diff", :none, diff_img)
