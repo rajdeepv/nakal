@@ -39,7 +39,7 @@ module Nakal
 
     def nakal_execute relative_location, params = {:delay => nil, :replace_baseline => false, :acceptable_diff => 0.0}
       return if ENV['NAKAL_MODE'].nil?
-      Nakal.create_image_dir File.dirname(relative_location)
+      Nakal.set File.dirname(relative_location)
       screen_name = File.basename(relative_location)
       sleep params[:delay] unless params[:delay].nil?
       capture_screen(screen_name) if (ENV['NAKAL_MODE'] == "build") || (params[:replace_baseline] == true)
